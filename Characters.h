@@ -17,7 +17,6 @@ private:
 	int proficiencyS = 0; //skill proficiency counter
 	int expertise = 0; //skill counter
 	int languages = 0; //how many languages the character can speak 
-	string spoken = "Common ";//need to set languages, one is always taken up by Common
 	int lvl, exp, profBonus; //leveling 
 	string race, gender, background, morals, classType, toolprof, armorprof, weaponprof;
 	string skillList;
@@ -55,8 +54,22 @@ public:
 	void charInventory();
 
 	int getLvl();
-};
 
+	int getBstr();
+	int getBdex();
+	int getBcon();
+	int getBintel();
+	int getBwis();
+	int getBchar();
+
+	int getMstr();
+	int getMdex();
+	int getMcon(); 
+	int getMintel();
+	int getMwis();
+	int getMchar();
+};
+//constructor for making a new character
 Character::Character() {
 	Character::setName();
 	Character::setBStats();
@@ -71,9 +84,8 @@ Character::Character() {
 	lvl = 1;
 	exp = 0;
 	profBonus = 2;
-	
 }
-
+//constructor for loading in a character by their name
 Character::Character(string n) {
 	Character::loadCharacter(n);
 }
@@ -83,8 +95,8 @@ void Character::setName() {
 	cin >> name;
 }
 void Character::setBStats() {
-	int statChoice[6];
-	int holding[6];
+	int statChoice[6];//holding array for a character's rolled stats
+	int holding[6];//clone of statChoice (for future implementation of changing stats on the fly)
 	int choice, holdChar;
 
 	srand(time(NULL));
@@ -111,7 +123,7 @@ void Character::setBStats() {
 	cout << endl;
 	cout << "Which stat value will be assigned to strength? Input value: ";
 	cin >> choice;
-	while (!cin || statExist(statChoice, choice) == -1 || cin.fail()) {
+	while (!cin || statExist(statChoice, choice) == -1 || cin.fail()) {//statExists checks the statChoice array to make sure the stat in question is avaliable for assignment 
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "Invalid Input!" << endl;
@@ -1148,3 +1160,42 @@ void Character::loadCharacter(string n) {
 int Character::getLvl() {
 	return lvl;
 }
+//getters for base stats
+int Character::getBstr() {
+	return bstr;
+}
+int Character::getBdex() {
+	return bdex;
+}
+int Character::getBcon() {
+	return bcon;
+}
+int Character::getBintel() {
+	return bintel;
+}
+int Character::getBwis() {
+	return bwis;
+}
+int Character::getBchar() {
+	return bchar;
+}
+//getters for modifiers for stats
+int Character::getMstr() {
+	return mstr;
+}
+int Character::getMdex() {
+	return mdex;
+}
+int Character::getMcon() {
+	return mcon;
+}
+int Character::getMintel() {
+	return mintel;
+}
+int Character::getMwis() {
+	return mwis;
+}
+int Character::getMchar() {
+	return mchar;
+}
+
