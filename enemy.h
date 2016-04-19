@@ -191,3 +191,4 @@ void generateEncounter(int PartySize, int Level) {	//method for generating an en
 		enemy[i]->enemyStats();
 	}
 }
+
