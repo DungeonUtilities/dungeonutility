@@ -35,7 +35,6 @@ private:
 	void setClass();
 	void setSkills();
 
-	void levelUp();
 	void calcAC();
 
 	int statExist(int[], int);
@@ -52,7 +51,7 @@ public:
 	void saveCharacter();
 	void loadCharacter(string);
 	void charInventory();
-
+	void levelUp();
 	int getLvl();
 
 	int getBstr();
