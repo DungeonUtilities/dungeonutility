@@ -1207,3 +1207,4 @@ int Character::getMchar() {
 	return mchar;
 }
 
+
