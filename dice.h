@@ -11,7 +11,7 @@
 #include <string>
 #include <stdlib.h>
 #include <stdio.h>
-#include <vector>
+
 
 using namespace std;
 
@@ -22,7 +22,7 @@ public:
     static int roll(int sides);     //Generates random number between 1 and 'sides.'
     static int* rollMore(int times, int sides);     //Generates 'times' random numbers between 1 and 'sides.'
     static int abilityScore();      //Generates standard ability scores using 4d6 drop the lowest roll method.
-    static int* att(int bonus);       //Attack roll with d20 (alerts if 1 or 20), adds 'bonus' to roll.
+//    static int* att(int bonus);       //Attack roll with d20 (alerts if 1 or 20), adds 'bonus' to roll.
     static void parseAndRoll(string s);
     static void typeRoll();
 };
@@ -58,14 +58,14 @@ int Dice::abilityScore() {
     return score;
 }
 
-int* Dice::att(int bonus) {
+/*int* Dice::att(int bonus) {
     int att[3] = {0,0,0};     //att[0] stores the attack roll, att[1] indicates crit/fumble, att[2] is roll + bonus
     att[0] = roll(20);
     if(att[0] == 1){att[1] = -1;}    //att[1] is -1 if attack roll is a fumble (rolls 1)
     else if (att[0] == 20){att[1] = 1;}    //att[1] is 1 if attack roll is a crit (rolls 20)
     att[2] = att[0] + bonus;      //att[2] is total attack roll -- roll + bonus
     return att;
-}
+}*/
 
 //method to parse a string, validate it, and output dice rolls based on the input.
 void Dice::parseAndRoll(string s){
