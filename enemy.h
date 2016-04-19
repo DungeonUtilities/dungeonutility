@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "dice.h"
 
 using namespace std;
@@ -55,13 +56,6 @@ void Enemy::setType() {	//Allows the user to select an enemy type
 		cout << "Please enter 1, 2, or 3" << endl;
 		cin >> EnemyType;
 	}
-
-		/*if (EnemyType < 1 || EnemyType > 3) {
-			cin.clear();
-			cout << "\nInvalid choice!" << endl;
-			cout << "Please enter 1, 2, or 3" << endl;
-			cin >> EnemyType;
-		}*/
 
 	if (EnemyType = 1) {	//generates an enemy for choice 1
 		Name = "Giant Eagle";
@@ -183,6 +177,7 @@ void generateEncounter(int PartySize, int Level) {	//method for generating an en
 	}
 
 	enemyLevel = avgLevel / numEnemy; //Calculates the levels of the enemies
+	if (enemyLevel = 0) enemyLevel = 1;
 	Enemy* enemy[8];	//declares an array of pointers to enemy objects
 
 	for (int i = 0; i < numEnemy; i++) {	//fills the array with enemy objects
@@ -190,9 +185,9 @@ void generateEncounter(int PartySize, int Level) {	//method for generating an en
 		enemy[i] = new Enemy(enemyLevel);
 	}
 
-	cout << "Displaying enemy stats for this encounter" << endl; //displays the stats for all enemies generated
+	cout << "\nDisplaying enemy stats for this encounter" << endl; //displays the stats for all enemies generated
 	for (int i = 0; i < numEnemy; i++) {
-		cout << "Enemy " << i + 1 << ": ";
+		cout << "\nEnemy " << i + 1 << ": ";
 		enemy[i]->enemyStats();
 	}
 }
