@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <vector>
 #include <iomanip>
+#include <math.h>
 
 using namespace std;
 class mapMaker
@@ -312,7 +313,7 @@ void mapMaker::distance()
 		}
 		}
 	}
-	double distance = ((y2 - y1) / (x2 - x1)) * 5;
+	double distance = sqrt ( (y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1) ) * 5;
 	if (distance < 0)
 	{
 		distance = distance * -1;
@@ -377,7 +378,12 @@ void mapMaker::newMap(int terrain)
 		if (size > 26)
 		{
 			size = 26;
-			std::cout << "Your input is a bit too large, largest possible value of 26 now bein used" << std::endl;
+			std::cout << "Your input is a bit too large, largest possible map of size 26 now in use" << std::endl;
+		}
+		if (size > 1)
+		{
+			size = 1;
+			std::cout << "Map dimensions cannot be negative, smallest possible map of size 1 now in use" << std::endl;
 		}
 			goodInput = true;
 			trueSize = size;
@@ -462,6 +468,17 @@ void mapMaker::editMap()
 					}
 				}
 				coordinates[placement] = temp[0];
+				if (temp[1] - 49 < 0 || temp[1] - 49 > 25)
+				{
+					std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
+					editMap();
+				}
+				if (temp[1] - 48 > trueSize)
+				{
+					std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+					std::cout << std::endl;
+					editMap();
+				}
 				coordinates[placement + 1] = temp[1] - 49;
 				placement = placement + 2;
 				noGood = true;
@@ -482,6 +499,22 @@ void mapMaker::editMap()
 					}
 				}
 				coordinates[placement] = temp[0];
+				if (temp[1] - 49 < 0 || temp[1] - 49 > 25)
+				{
+					std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
+					editMap();
+				}
+				if (temp[2] - 49 < 0 || temp[2] - 49 > 25)
+				{
+					std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
+					editMap();
+				}
+				if (temp[1] - 48 > trueSize)
+				{
+					std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+					std::cout << std::endl;
+					editMap();
+				}
 				coordinates[placement + 1] = ((temp[1] - 49) * 10) + (temp[2] - 49);
 				noGood = true;
 				placement = placement + 2;
@@ -665,7 +698,10 @@ void mapMaker::viewMap()
 			std::cout << alphaCoords[i];
 			for (int j = 0; j < 26; j++)
 			{
-				temp = playerMap[i][j];
+				if (i < trueSize)
+				{
+					temp = playerMap[i][j];
+				}
 				//cout << temp << " ";
 				if (temp != -1)
 				{
