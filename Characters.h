@@ -434,7 +434,7 @@ void Character::setBackground() {//it should be noted that clothes were not adde
 		languages += 1;
 		toolprof = "A gaming set, thieves tools ";
 		inventory.addItem(new Coinage(15, "coins", 15, 0, 0, 0, 0));
-		inventory.addItem(new Gear(1, "Crowbar", 200, 5, "Multiple purepose tool"));
+		inventory.addItem(new Gear(1, "Crowbar", 200, 5, "Multiple purpose tool"));
 	}
 	if (choice == 3) {
 		background = "Folk Hero";
@@ -863,7 +863,7 @@ void Character::setSkills() {
 	string skills[18] = { "Athletics","Acrobatics","Sleight of Hand",
 		"Stealth","Arcana","History",
 		"Investigation","Nature","Religion",
-		"Animal Handeling","Insight","Medicine",
+		"Animal Handling","Insight","Medicine",
 		"Perception","Survival","Deception",
 		"Intimidation","Performance","Persuasion" };
 	cout << "Your character can have " << proficiencyS << " of the following skills:" << endl;
