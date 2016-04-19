@@ -67,6 +67,7 @@ int* Dice::att(int bonus) {
     return att;
 }
 
+//method to parse a string, validate it, and output dice rolls based on the input.
 void Dice::parseAndRoll(string s){
     string instruct = "Enter dice in the format: 1d20+5";
     string digits = "0123456789";
@@ -115,13 +116,16 @@ void Dice::parseAndRoll(string s){
     cout << num << "d" << sides << ": " << ends; //roll using assigned values and output
     int* roll = Dice::rollMore(num,sides);
     int total = 0;
-    for(int i = 0; i < num; i++){total += roll[i]; cout << "[" << roll[i] << "]" << "+" << ends;}
+    for(int i = 0; i < num; i++){total += roll[i]; cout << "[" << roll[i] << "]" << "+" << ends; if((i+1) % 15 == 0){cout << endl;}}
     total += bonus;
 
     cout << bonus << " = " << total << endl;
 }
 
-void Dice::typeRoll(){ //menu for parseAndRoll
+//menu for parseAndRoll
+//Calls parseAndRoll for validation
+//formats dice results to display each roll and add bonus on the end
+void Dice::typeRoll(){
     string line;
     string instruct = "Roll (eg. 1d6+10). Type 'exit' to end: ";
 
