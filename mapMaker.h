@@ -13,6 +13,7 @@ using namespace std;
 class mapMaker
 {
 private:
+	//variables
 	int playerCoord;
 	int terrainMod;
 	int coordinates[676];
@@ -22,16 +23,13 @@ private:
 	int trueSize;
 
 public:
-	//int getCoord();
-	//void setCoord(int x, int y);
+	//methods
 	void mainMenu();
 	void newMapMenu();
 	void newMap(int terrain);
 	void viewMap();
 	void editMap();
 	void distance();
-	//bool getQuit();
-	//void setQuit(bool quit);
 	void findDist(int x1, int y1, int x2, int y2);
 	const int feetPerUnit = 5;
 
@@ -48,6 +46,7 @@ public:
 
 struct map
 {
+	//creates a map structure
 	int size;
 	int mapArray[26][26];
 	int terrainChoice;
@@ -69,8 +68,10 @@ struct map
 	}
 };
 
+//main menu
 void mapMaker::mainMenu()
 {
+	//menu options
 	int choice;
 	std::cout << "Map Menu:" << std::endl;
 	std::cout << "(1) Create New Map" << std::endl;
@@ -80,12 +81,14 @@ void mapMaker::mainMenu()
 	std::cout << "(5) Return to Main Menu" << std::endl;
 
 	std::cin >> choice;
+	//choice validation
 	while (!std::cin)
 	{
 		std::cout << " Invalid choice, please try again" << std::endl;
 		std::cin >> choice;
 	}
 
+	//executes different methods based on input
 	switch (choice)
 	{
 	case 1:
@@ -111,6 +114,7 @@ void mapMaker::mainMenu()
 	}
 }
 
+//calculates distance
 void mapMaker::distance()
 {
 	//sends user back to main menu if a map is not created
@@ -131,12 +135,9 @@ void mapMaker::distance()
 		{
 		case 1:
 		{
-			//std::cout << "this works" << std::endl;
 			char temp[256];
 			std::cin >> temp;
 			int tempLength;
-			//testing
-			std::cout << temp << std::endl;
 			bool noGood = false;
 			int charCount = 0;
 			while (!noGood)
@@ -147,11 +148,11 @@ void mapMaker::distance()
 					charCount++;
 					i++;
 				}
-				std::cout << charCount << std::endl;
 				if (charCount == 2)
 				{
 					noGood = true;
 					//try catch int
+					//converts the characters to integers for the player map
 					for (int j = 0; j < 26; j++)
 					{
 						if (temp[0] == alphaCoords[j])
@@ -164,6 +165,7 @@ void mapMaker::distance()
 							x1 = numCoords[j];
 						}
 					}
+					//converts the characters to integers for the player map
 					for (int j = 0; j < 26; j++)
 					{
 						if ((temp[1] - 48) == numCoords[j])
@@ -176,12 +178,13 @@ void mapMaker::distance()
 							y1 = numCoords[j];
 						}
 					}
-					std::cout << x1 << y1 << std::endl;
+					//std::cout << x1 << y1 << std::endl;
 				}
 				else if (charCount == 3)
 				{
 					noGood = true;
 					//try catch int
+					//converts the characters to integers for the player map
 					for (int j = 0; j < 26; j++)
 					{
 						if (temp[0] == alphaCoords[j])
@@ -195,6 +198,7 @@ void mapMaker::distance()
 						}
 					}
 					int twoDigit = ((temp[1] - 48) * 10) + temp[2] - 48;
+					//converts the characters to integers for the player map
 					for (int j = 0; j < 26; j++)
 					{
 						if (twoDigit == numCoords[j])
@@ -207,7 +211,7 @@ void mapMaker::distance()
 							y1 = numCoords[j];
 						}
 					}
-					std::cout << x1 << y1 << std::endl;
+					//std::cout << x1 << y1 << std::endl;
 				}
 				else
 				{
@@ -220,13 +224,9 @@ void mapMaker::distance()
 		}
 		case 2:
 		{
-
-			//std::cout << "this works" << std::endl;
 			char temp[256];
 			std::cin >> temp;
 			int tempLength;
-			//testing
-			std::cout << temp << std::endl;
 			bool noGood = false;
 			int charCount = 0;
 			while (!noGood)
@@ -237,11 +237,10 @@ void mapMaker::distance()
 					charCount++;
 					i++;
 				}
-				//std::cout << charCount << std::endl;
 				if (charCount == 2)
 				{
 					noGood = true;
-					//try catch int
+					//converts the characters to integers for the player map
 					for (int j = 0; j < 26; j++)
 					{
 						if (temp[0] == alphaCoords[j])
@@ -266,12 +265,11 @@ void mapMaker::distance()
 							y2 = numCoords[j];
 						}
 					}
-					//std::cout << x2 << y2 << std::endl;
 				}
 				else if (charCount == 3)
 				{
 					noGood = true;
-					//try catch int
+					//converts the characters to integers for the player map
 					for (int j = 0; j < 26; j++)
 					{
 						if (temp[0] == alphaCoords[j])
@@ -279,6 +277,7 @@ void mapMaker::distance()
 							if (j + 1 > trueSize)
 							{
 								std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+								std::cout << std::endl;
 								distance();
 							}
 							x2 = numCoords[j];
@@ -297,7 +296,6 @@ void mapMaker::distance()
 							y2 = numCoords[j];
 						}
 					}
-					//std::cout << x2 << y2 << std::endl;
 				}
 				else
 				{
@@ -315,10 +313,16 @@ void mapMaker::distance()
 		}
 	}
 	double distance = ((y2 - y1) / (x2 - x1)) * 5;
+	if (distance < 0)
+	{
+		distance = distance * -1;
+	}
 	std::cout << "The the distance between these points is " << distance << " feet" << std::endl;
+	std::cout << std::endl;
 	mainMenu();
 }
 
+//menu for initial new map
 void mapMaker::newMapMenu()
 {
 	std::cout << "New Map Terrain Options:" << std::endl;
@@ -355,6 +359,7 @@ void mapMaker::newMapMenu()
 	}
 }
 
+//Creates new map
 void mapMaker::newMap(int terrain)
 {
 	//struct map *userMap = new map;
@@ -368,6 +373,11 @@ void mapMaker::newMap(int terrain)
 		{
 			std::cout << " Invalid size, please try again" << std::endl;
 			std::cin >> size;
+		}
+		if (size > 26)
+		{
+			size = 26;
+			std::cout << "Your input is a bit too large, largest possible value of 26 now bein used" << std::endl;
 		}
 			goodInput = true;
 			trueSize = size;
@@ -391,6 +401,7 @@ void mapMaker::newMap(int terrain)
 	}
 
 	std::cout << "Map made successfully! Returning to map menu" << std::endl;
+	std::cout << std::endl;
 	mapMaker::mainMenu();
 	//mapMaker::playerMap[26][26] = mapArray[26][26];
 }
@@ -444,6 +455,7 @@ void mapMaker::editMap()
 						if (k + 1 > trueSize)
 						{
 							std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+							std::cout << std::endl;
 							editMap();
 						}
 						temp[0] = k;
@@ -463,6 +475,7 @@ void mapMaker::editMap()
 						if (k + 1 > trueSize)
 						{
 							std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+							std::cout << std::endl;
 							editMap();
 						}
 						temp[0] = k;
@@ -503,6 +516,7 @@ void mapMaker::editMap()
 	std::cout << "(10) Food Source        (FS)" << std::endl;
 	std::cout << "(11) Trail              (T)" << std::endl;
 	std::cout << "(12) Back To Map Menu" << std::endl;
+	std::cout << std::endl;
 
 	int choice;
 	int i = 0;
@@ -619,17 +633,20 @@ void mapMaker::editMap()
 		break;
 	default:
 		std::cout << "invalid option, please try again" << std::endl;
+		std::cout << std::endl;
 		mainMenu();
 		break;
 	}
 }
 
+//displays map
 void mapMaker::viewMap()
 {
 	//sends user back to main menu if a map is not created
 	if (mapMaker::hasMap == false)
 	{
 		std::cout << "You don't have a map! Please make a new map!" << std::endl;
+		std::cout << std::endl;
 		mapMaker::mainMenu();
 	}
 	if (mapMaker::hasMap == true)
