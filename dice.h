@@ -101,13 +101,16 @@ void Dice::parseAndRoll(string s){
         psides = s.substr(dSpot+1, bonusSpot - dSpot - 1);
         pbonus = s.substr(bonusSpot, s.length() - bonusSpot);
     }
-    else{psides = s.substr(dSpot+1, s.length() - dSpot+1); cout << "else" << ends;}
+    else{psides = s.substr(dSpot+1, s.length() - dSpot+1); pbonus = "0";}
 
     num = stoi(pnum, nullptr);
     sides = stoi(psides, nullptr);
     bonus = stoi(pbonus, nullptr);
 
-
+    if(bonus > 9000){
+        for(int i = 0; i < 9001; i++){cout << "GOKU" << ends;}
+        return;
+    }
 
     cout << num << "d" << sides << ": " << ends; //roll using assigned values and output
     int* roll = Dice::rollMore(num,sides);
