@@ -83,8 +83,10 @@ void mapMaker::mainMenu()
 
 	std::cin >> choice;
 	//choice validation
-	while (!std::cin)
+	while (!std::cin || choice < 1 || choice > 5)
 	{
+		std::cin.clear();
+		std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		std::cout << " Invalid choice, please try again." << std::endl;
 		std::cin >> choice;
 	}
@@ -333,8 +335,10 @@ void mapMaker::newMapMenu()
 	std::cout << "(4) Back To Map Menu" << std::endl;
 	int choice;
 	std::cin >> choice;
-	while (!std::cin)
+	while (!std::cin || choice < 1 || choice > 4)
 	{
+		std::cin.clear();
+		std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		std::cout << " Invalid choice, please try again." << std::endl;
 		std::cin >> choice;
 	}
@@ -370,8 +374,10 @@ void mapMaker::newMap(int terrain)
 	{
 		std::cout << "Enter a single integer value for the dimensions of your square map:" << std::endl;
 		std::cin >> size;
-		while (!std::cin)
+		while (!std::cin || size < 1 || size > 26)
 		{
+			std::cin.clear();
+			std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			std::cout << " Invalid size, please try again." << std::endl;
 			std::cin >> size;
 		}
@@ -554,8 +560,10 @@ void mapMaker::editMap()
 	int choice;
 	int i = 0;
 	std::cin >> choice;
-	while (!std::cin)
+	while (!std::cin || choice < 1 || choice > 12)
 	{
+		std::cin.clear();
+		std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		std::cout << " Invalid choice, please try again." << std::endl;
 		std::cin >> choice;
 	}
