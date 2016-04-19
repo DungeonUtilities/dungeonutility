@@ -467,4 +467,4 @@ public:
 	}
 };
 
-#endif DUNGEONUTILITY_ITEMS_H
+#endif
