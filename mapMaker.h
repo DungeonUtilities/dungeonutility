@@ -85,7 +85,7 @@ void mapMaker::mainMenu()
 	//choice validation
 	while (!std::cin)
 	{
-		std::cout << " Invalid choice, please try again" << std::endl;
+		std::cout << " Invalid choice, please try again." << std::endl;
 		std::cin >> choice;
 	}
 
@@ -108,7 +108,7 @@ void mapMaker::mainMenu()
 		mapMaker::quit = true;
 		break;
 	default:
-		std::cout << "Invalid option, please try again" << std::endl;
+		std::cout << "Invalid option, please try again." << std::endl;
 		mainMenu();
 		break;
 
@@ -160,7 +160,7 @@ void mapMaker::distance()
 						{
 							if (j + 1 > trueSize)
 							{
-								std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+								std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 								distance();
 							}
 							x1 = numCoords[j];
@@ -173,7 +173,7 @@ void mapMaker::distance()
 						{
 							if (j + 1 > trueSize)
 							{
-								std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+								std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 								distance();
 							}
 							y1 = numCoords[j];
@@ -192,7 +192,7 @@ void mapMaker::distance()
 						{
 							if (j + 1 > trueSize)
 							{
-								std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+								std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 								distance();
 							}
 							x1 = numCoords[j];
@@ -206,7 +206,7 @@ void mapMaker::distance()
 						{
 							if (j + 1 > trueSize)
 							{
-								std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+								std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 								distance();
 							}
 							y1 = numCoords[j];
@@ -248,7 +248,7 @@ void mapMaker::distance()
 						{
 							if (j + 1 > trueSize)
 							{
-								std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+								std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 								distance();
 							}
 							x2 = numCoords[j];
@@ -260,7 +260,7 @@ void mapMaker::distance()
 						{
 							if (j + 1 > trueSize)
 							{
-								std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+								std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 								distance();
 							}
 							y2 = numCoords[j];
@@ -277,7 +277,7 @@ void mapMaker::distance()
 						{
 							if (j + 1 > trueSize)
 							{
-								std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+								std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 								std::cout << std::endl;
 								distance();
 							}
@@ -291,7 +291,7 @@ void mapMaker::distance()
 						{
 							if (j + 1 > trueSize)
 							{
-								std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+								std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 								distance();
 							}
 							y2 = numCoords[j];
@@ -318,7 +318,7 @@ void mapMaker::distance()
 	{
 		distance = distance * -1;
 	}
-	std::cout << "The the distance between these points is " << distance << " feet" << std::endl;
+	std::cout << "The the distance between these points is " << distance << " feet." << std::endl;
 	std::cout << std::endl;
 	mainMenu();
 }
@@ -335,7 +335,7 @@ void mapMaker::newMapMenu()
 	std::cin >> choice;
 	while (!std::cin)
 	{
-		std::cout << " Invalid choice, please try again" << std::endl;
+		std::cout << " Invalid choice, please try again." << std::endl;
 		std::cin >> choice;
 	}
 
@@ -354,7 +354,7 @@ void mapMaker::newMapMenu()
 		mapMaker::mainMenu();
 		break;
 	default:
-		std::cout << "invalid option, please try again" << std::endl;
+		std::cout << "Invalid option, please try again." << std::endl;
 		mapMaker::newMapMenu();
 		break;
 	}
@@ -368,22 +368,22 @@ void mapMaker::newMap(int terrain)
 	int size; 
 	while (goodInput == false)
 	{
-		std::cout << "Enter a single integer value for the dimensions of your square map" << std::endl;
+		std::cout << "Enter a single integer value for the dimensions of your square map:" << std::endl;
 		std::cin >> size;
 		while (!std::cin)
 		{
-			std::cout << " Invalid size, please try again" << std::endl;
+			std::cout << " Invalid size, please try again." << std::endl;
 			std::cin >> size;
 		}
 		if (size > 26)
 		{
 			size = 26;
-			std::cout << "Your input is a bit too large, largest possible map of size 26 now in use" << std::endl;
+			std::cout << "Your input is a bit too large, largest possible map of size 26 now in use." << std::endl;
 		}
 		if (size > 1)
 		{
 			size = 1;
-			std::cout << "Map dimensions cannot be negative, smallest possible map of size 1 now in use" << std::endl;
+			std::cout << "Map dimensions cannot be negative, smallest possible map of size 1 now in use." << std::endl;
 		}
 			goodInput = true;
 			trueSize = size;
@@ -406,7 +406,7 @@ void mapMaker::newMap(int terrain)
 			mapMaker::playerMap[i][j] = terrain - 1;
 	}
 
-	std::cout << "Map made successfully! Returning to map menu" << std::endl;
+	std::cout << "Map made successfully! Returning to map menu." << std::endl;
 	std::cout << std::endl;
 	mapMaker::mainMenu();
 	//mapMaker::playerMap[26][26] = mapArray[26][26];
@@ -422,7 +422,7 @@ void mapMaker::editMap()
 		std::cout << std::endl;
 		mapMaker::mainMenu();
 	}
-	std::cout << "Enter coordinates of tile(s) separated by enter then followed by 'stop'" << std::endl;
+	std::cout << "Enter coordinates of tile(s) separated by enter then followed by 'stop'." << std::endl;
 
 	bool letsStop = false;
 	int arrayCount = 0;
@@ -460,7 +460,7 @@ void mapMaker::editMap()
 					{
 						if (k + 1 > trueSize)
 						{
-							std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+							std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 							std::cout << std::endl;
 							editMap();
 						}
@@ -475,7 +475,7 @@ void mapMaker::editMap()
 				}
 				if (temp[1] - 48 > trueSize)
 				{
-					std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+					std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 					std::cout << std::endl;
 					editMap();
 				}
@@ -491,7 +491,7 @@ void mapMaker::editMap()
 					{
 						if (k + 1 > trueSize)
 						{
-							std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+							std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 							std::cout << std::endl;
 							editMap();
 						}
@@ -511,7 +511,7 @@ void mapMaker::editMap()
 				}
 				if (temp[1] - 48 > trueSize)
 				{
-					std::cout << "This coordinate does not exist on your map, please try again" << std::endl;
+					std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 					std::cout << std::endl;
 					editMap();
 				}
@@ -556,7 +556,7 @@ void mapMaker::editMap()
 	std::cin >> choice;
 	while (!std::cin)
 	{
-		std::cout << " Invalid choice, please try again" << std::endl;
+		std::cout << " Invalid choice, please try again." << std::endl;
 		std::cin >> choice;
 	}
 
@@ -665,7 +665,7 @@ void mapMaker::editMap()
 		mainMenu();
 		break;
 	default:
-		std::cout << "invalid option, please try again" << std::endl;
+		std::cout << "invalid option, please try again." << std::endl;
 		std::cout << std::endl;
 		mainMenu();
 		break;
