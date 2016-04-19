@@ -52,6 +52,7 @@ public:
 	string getName();
 	void saveCharacter();
 	void loadCharacter(string);
+	void charInventory();
 
 	int getLvl();
 };
@@ -964,6 +965,9 @@ void Character::charInfo() {
 	cout << "Number of Languages: " << languages << endl;
 	cout << "Skill List: " << skillList << endl;
 	cout << endl;
+}
+void Character::charInventory() {
+	inventory.getValues();
 }
 int Character::calcMod(int x) {
 	if (x == 1) {
