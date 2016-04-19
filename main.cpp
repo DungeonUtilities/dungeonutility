@@ -4,6 +4,7 @@
 #include "dice.h"
 #include "Characters.h"
 #include "enemy.h"
+#include "mapMaker.h"
 
 
 using namespace std;
@@ -14,20 +15,21 @@ int main() {
 	Character *characterArray[5]; //array of pointers to character object, makes it so we can call this array and move through it as needed
 	int numOfCharacter = 0; //int used to keep track of characters, very important, many uses throughout main method
 	while (true){
-
+		
 		int choice = 0;
 		cout << "\nWhat would you like to do?" << endl; //this is the main menu
 		cout << "\n(1) Environment Generation" << endl;
 		cout << "(2) Random Encounter Generation" << endl;
 		cout << "(3) Character Generaton" << endl;
 		cout << "(4) Display Character Information" << endl;
-		cout << "(5) Load/Save Game" << endl;
-		cout << "(6) Dice Roller" << endl;
-		cout << "(7) Exit." << endl;
+		cout << "(5) Level Up a Character" << endl;
+		cout << "(6) Load/Save Game" << endl;
+		cout << "(7) Dice Roller" << endl;
+		cout << "(8) Exit." << endl;
 		cout << "\nChoice: ";
 		cin >> choice;
 
-		while (!cin || choice > 7 || choice < 1 || cin.fail()) { //input validation
+		while (!cin || choice > 8 || choice < 1 || cin.fail()) { //input validation
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			cout << "\nInvalid input!" << endl;
@@ -36,7 +38,8 @@ int main() {
 		}
 		
 		if (choice == 1) { //map maker
-			//mapMaker::mainMenu();
+			mapMaker map;
+			map.mainMenu();
 		}
 		if (choice == 2) { //Random Encounter
 			if (numOfCharacter > 0){ //checks to make sure there is at least character to avoid errors
@@ -95,7 +98,7 @@ int main() {
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					cout << "\nInvalid Input!" << endl;
-					cout << "What charcater would you like to see info for?" << endl;
+					cout << "What character would you like to see info for?" << endl;
 					cout << "\nChoice: ";
 					cin >> charChoice;
 				}
@@ -107,7 +110,33 @@ int main() {
 				cout << "You haven't made your characters yet!" << endl;
 			}
 		}
-		if (choice == 5) {
+		if (choice == 5) { //level up characters
+			if (numOfCharacter > 0){
+				int x;
+				cout << "Which character would you like to level up?" << endl;
+
+				for (int i = 0; i < numOfCharacter; i++) { //prints out prompts and options
+					cout << "(" << i + 1 << ") " << characterArray[i]->getName() << "\n";
+				}
+				cout << "Type the number of the character you wish to level up." << endl;
+				cout << "\nChoice: ";
+				cin >> x;
+				while (!cin || x < 1 || x > numOfCharacter || cin.fail()) { //input validation
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "\nInvalid Input!" << endl;
+					cout << "Type the number of the character you wish to level up." << endl;
+					cout << "\nChoice: ";
+					cin >> x;
+				}
+				characterArray[x - 1]->levelUp(); //levels up the character 
+				cout << characterArray[x - 1]->getName() << " has progressed to level " << characterArray[x - 1]->getLvl() << "." << endl;
+			}
+			else {
+				cout << "You have no characters to level up!" << endl;
+			}
+		}
+		if (choice == 6) {//Load or save your characters
 			int x;
 			cout << "What would you like to do?\n(1) Load\n(2) Save \n\nChoice: ";
 			cin >> x;
@@ -121,17 +150,26 @@ int main() {
 			if (x == 1) {
 				string charName;
 				cout << "To load a character, type its name. (Case Sensitive)" << endl;
-				cout << "To exit, type \"EXIT\" with no quotation marks." << endl;
+				cout << "To exit, type \"0\" with no quotation marks." << endl;
 				cout << "Name : ";
 				cin >> charName;
-				if (charName == "EXIT") { //exit option
+				bool alreadyExists = false;
+				for (int i = 0; i < numOfCharacter; i++) {
+					if (charName.compare(characterArray[i]->getName()) == 0){
+						alreadyExists = true;
+					}
+				}
+				if (alreadyExists) {
+					cout << "A character with that name already exists or has already been loaded." << endl; //makes sure two character with the same name won't be loaded in
+				}
+				if (charName.compare("0")==0) { //exit option
 					cout << "Exiting to menu." << endl;
 				}
-				else if (numOfCharacter >= 0 && numOfCharacter < 5) { //checks to make sure characters can be loaded
+				else if (numOfCharacter >= 0 && numOfCharacter < 5 && !alreadyExists) { //checks to make sure characters can be loaded
 					numOfCharacter++; //adds a character to the character counter
 					characterArray[numOfCharacter-1] = new Character(charName); //adds the character from the file
 				}
-				else {
+				else if (numOfCharacter >= 5){
 					cout << "You have already reached the maximum amount of characters." << endl;
 				}
 				
@@ -150,13 +188,14 @@ int main() {
 				}
 			}
 		}
-		if (choice == 6) { //dice roll function
+		if (choice == 7) { //dice roll function
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			Dice::typeRoll(); //calls upon typeRoll() to roll a dice
 		}
-		if (choice == 7) {
+		if (choice == 8) {
 			break; //break statement to exit the program
 		}
 	}
 }
+
