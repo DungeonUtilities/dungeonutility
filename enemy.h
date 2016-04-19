@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <fstream>
 #include "dice.h"
 
 using namespace std;
