@@ -195,14 +195,14 @@ void Enemy::setStats(int rating) {
 	}
 };
 
-void generateEncounter() {
-	int partySize;
-	int level;
-	int avgLevel = 0;
+void generateEncounter(int PartySize, int Level) {
+	int partySize = PartySize;
+	int level = Level;
+	int avgLevel = level / partySize;
 	int numEnemy;
 	int enemyLevel;
 
-	cout << "How many members are in your party?" << endl;
+	/*cout << "How many members are in your party?" << endl;
 	cin >> partySize;
 
 	while (true) {
@@ -246,46 +246,39 @@ void generateEncounter() {
 				}
 
 				avgLevel += level;
-			}
+			}*/
 
-			cout << "\nHow many enemies would you like to generate? ";
-			cin >> numEnemy;
-			while (true) {
-				while (cin.fail()) {
+	cout << "\nHow many enemies would you like to generate? ";
+	cin >> numEnemy;
+	//while (true) {
+	while (cin.fail() || numEnemy < 1 || numEnemy > 8) {
+		cin.clear();
+		cin.ignore(std::numeric_limits<int>::max(), '\n');
+		cout << "\nInvalid input!" << endl;
+		cout << "Please enter a valid number of enemies" << endl;
+		cin >> numEnemy;
+	}
+
+				/*if (numEnemy < 1 || numEnemy > 8) {
 					cin.clear();
 					cin.ignore(std::numeric_limits<int>::max(), '\n');
-					cout << "\nInvalid input!" << endl;
-					cout << "Please enter a valid number of enemies" << endl;
-					cin >> numEnemy;
-				}
-
-				if (numEnemy < 1 || numEnemy > 8) {
-					cin.clear();
 					cout << "Invalid choice!" << endl;
 					cout << "You can only generate up to 8 enemies" << endl;
 					cin >> partySize;
-				}
+				}*/
 
-				else {
-					enemyLevel = avgLevel / numEnemy;
-					Enemy* enemy[8];
+				
+	enemyLevel = avgLevel / numEnemy;
+	Enemy* enemy[8];
 
-					for (int i = 0; i < numEnemy; i++) {
-						cout << "Creating enemy " << i + 1 << endl;
-						enemy[i] = new Enemy(enemyLevel);
-					}
+	for (int i = 0; i < numEnemy; i++) {
+		cout << "Creating enemy " << i + 1 << endl;
+		enemy[i] = new Enemy(enemyLevel);
+	}
 
-					cout << "Displaying enemy stats for this encounter" << endl;
-					for (int i = 0; i < numEnemy; i++) {
-						cout << "Enemy " << i + 1 << ": ";
-						enemy[i]->enemyStats();
-					}
-
-					break;
-				}
-			}
-
-			break;
-		}
+	cout << "Displaying enemy stats for this encounter" << endl;
+	for (int i = 0; i < numEnemy; i++) {
+		cout << "Enemy " << i + 1 << ": ";
+		enemy[i]->enemyStats();
 	}
 }

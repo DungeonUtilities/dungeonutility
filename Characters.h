@@ -37,10 +37,12 @@ private:
 	void setSkills();
 
 	void levelUp();
+	void calcAC();
 
 	int statExist(int[], int);
 	int statExist(string[], int);
 	int calcMod(int);
+
 
 public:
 	Character();
@@ -50,8 +52,9 @@ public:
 	string getName();
 	void saveCharacter();
 	void loadCharacter(string);
+	void charInventory();
 
-	string getLvl();
+	int getLvl();
 };
 
 Character::Character() {
@@ -64,9 +67,11 @@ Character::Character() {
 	Character::setBackground();
 	Character::setClass();
 	Character::setSkills();
+	Character::calcAC();
 	lvl = 1;
 	exp = 0;
 	profBonus = 2;
+	
 }
 
 Character::Character(string n) {
@@ -878,6 +883,10 @@ void Character::setSkills() {
 		skills[choice] += "-Taken";
 	}
 }
+void Character::calcAC() {
+	inventory.orderList();
+	armorClass = inventory.getArmorClass();
+}
 
 void Character::levelUp() {
 	//increasing proficiency bonus as needed
@@ -938,6 +947,7 @@ void Character::displayStats() {
 	cout << "Intelligence: " << bintel << " Modifier: " << mintel << endl;
 	cout << "Wisdom: " << bwis << " Modifier: " << mwis << endl;
 	cout << "Charisma: " << bchar << " Modifier: " << mchar << endl;
+	cout << "Armor Class: " << armorClass << endl;
 	cout << endl;
 }
 void Character::charInfo() {
@@ -955,6 +965,9 @@ void Character::charInfo() {
 	cout << "Number of Languages: " << languages << endl;
 	cout << "Skill List: " << skillList << endl;
 	cout << endl;
+}
+void Character::charInventory() {
+	inventory.getValues();
 }
 int Character::calcMod(int x) {
 	if (x == 1) {
@@ -1025,6 +1038,7 @@ void Character::saveCharacter() {
 	save << "Intelligence: " + to_string(bintel) << " Modifier: " + to_string(mintel) + "\n";
 	save << "Wisdom: " + to_string(bwis) << " Modifier: " + to_string(mwis) + "\n";
 	save << "Charisma: " + to_string(bchar) << " Modifier: " + to_string(mchar) + "\n";
+	save << "Armor Class: " + to_string(armorClass) + "\n";
 	save << "Race: " + race + "\n";
 	save << "Gender: " + gender + "\n";
 	save << "Alignment: " + morals + "\n";
@@ -1093,40 +1107,44 @@ void Character::loadCharacter(string n) {
 			mchar = stoi(line.substr(line.find(":") + 2));
 		}
 		if (counter == 9) {
-			race = line.substr(line.find(":") + 2);
+			armorClass = stoi(line.substr(line.find(":") + 2));
 		}
 		if (counter == 10) {
-			gender = line.substr(line.find(":") + 2);
+			race = line.substr(line.find(":") + 2);
 		}
 		if (counter == 11) {
-			morals = line.substr(line.find(":") + 2);
+			gender = line.substr(line.find(":") + 2);
 		}
 		if (counter == 12) {
-			background = line.substr(line.find(":") + 2);
+			morals = line.substr(line.find(":") + 2);
 		}
 		if (counter == 13) {
-			toolprof = line.substr(line.find(":") + 2);
+			background = line.substr(line.find(":") + 2);
 		}
 		if (counter == 14) {
-			armorprof = line.substr(line.find(":") + 2);
+			toolprof = line.substr(line.find(":") + 2);
 		}
 		if (counter == 15) {
-			weaponprof = line.substr(line.find(":") + 2);
+			armorprof = line.substr(line.find(":") + 2);
 		}
 		if (counter == 16) {
-			classType = line.substr(line.find(":") + 2);
+			weaponprof = line.substr(line.find(":") + 2);
 		}
 		if (counter == 17) {
-			languages = stoi(line.substr(line.find(":") + 2));
+			classType = line.substr(line.find(":") + 2);
 		}
 		if (counter == 18) {
+			languages = stoi(line.substr(line.find(":") + 2));
+		}
+		if (counter == 19) {
 			skillList = line.substr(line.find(":") + 2);
 		}
 		counter++;
 	}
 	inventory.openFile(n);
+	file.close();
 }
 
-string Character::getLvl() {
-	return to_string(lvl);
+int Character::getLvl() {
+	return lvl;
 }
