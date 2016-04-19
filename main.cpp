@@ -11,7 +11,7 @@ using namespace std;
 
 
 int main() {
-	Character *characterArray[5]; //array of pointers to character object, makes it so we can call this array and move thorugh it as needed
+	Character *characterArray[5]; //array of pointers to character object, makes it so we can call this array and move through it as needed
 	int numOfCharacter = 0; //int used to keep track of characters, very important, many uses throughout main method
 	while (true){
 
