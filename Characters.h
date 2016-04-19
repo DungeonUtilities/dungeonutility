@@ -92,6 +92,15 @@ Character::Character(string n) {
 void Character::setName() {
 	cout << "What is the name of your Character?" << endl;
 	cin >> name;
+	while (!cin || name == "0" || cin.fail()) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Invalid Input!" << endl;
+		cout << "Eons ago, the Gods, in their infinite wisdom, had decided that the title of 0 would forever be cursed." << endl;
+		cout << "Critical failure: Your character and their entire bloodline have been obliterated from existance." << endl;
+		cout << "What is the name of your NEW character?" << endl;
+		cin >> name;
+	}
 }
 void Character::setBStats() {
 	int statChoice[6];//holding array for a character's rolled stats
