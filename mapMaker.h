@@ -264,6 +264,8 @@ void mapMaker::distance()
 				}
 				else
 				{
+					std::cin.clear();
+					std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					std::cout << "Invalid input, please enter a two-perameter coordinate separated by a space (ex. 'A5' or 'H25)" << std::endl;
 					std::cin >> temp;
 				}
@@ -393,6 +395,8 @@ void mapMaker::distance()
 				}
 				else
 				{
+					std::cin.clear();
+					std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					std::cout << "Invalid input, please enter a two-perameter coordinate separated by a space (ex. 'A5' or 'H25)" << std::endl;
 					std::cin >> temp;
 				}
@@ -618,6 +622,8 @@ void mapMaker::editMap()
 			}
 			else
 			{
+				std::cin.clear();
+				std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				std::cout << "Invalid input, please enter a two-perameter coordinate (ex. 'A5' or 'H25)" << std::endl;
 				std::cin >> temp;
 			}
