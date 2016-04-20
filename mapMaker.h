@@ -386,7 +386,7 @@ void mapMaker::newMap(int terrain)
 			size = 26;
 			std::cout << "Your input is a bit too large, largest possible map of size 26 now in use." << std::endl;
 		}
-		if (size > 1)
+		if (size < 1)
 		{
 			size = 1;
 			std::cout << "Map dimensions cannot be negative, smallest possible map of size 1 now in use." << std::endl;
