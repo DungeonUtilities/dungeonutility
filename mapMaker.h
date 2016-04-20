@@ -172,11 +172,15 @@ void mapMaker::distance()
 					//converts the characters to integers for the player map
 					if (temp[1] - 49 < 0 || temp[1] - 49 > 25)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
 						distance();
 					}
 					if (temp[1] - 48 > trueSize)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 						std::cout << std::endl;
 						distance();
@@ -214,22 +218,30 @@ void mapMaker::distance()
 					}
 					if (temp[1] - 49 < 0 || temp[1] - 49 > 25)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
 						distance();
 					}
 					if (temp[1] - 48 > trueSize)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 						std::cout << std::endl;
 						distance();
 					}
 					if (temp[2] - 49 < 0 || temp[2] - 49 > 25)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
 						distance();
 					}
 					if (temp[2] - 48 > trueSize)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 						std::cout << std::endl;
 						distance();
@@ -292,11 +304,15 @@ void mapMaker::distance()
 					}
 					if (temp[1] - 49 < 0 || temp[1] - 49 > 25)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
 						distance();
 					}
 					if (temp[1] - 48 > trueSize)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 						std::cout << std::endl;
 						distance();
@@ -333,22 +349,30 @@ void mapMaker::distance()
 					}
 					if (temp[1] - 49 < 0 || temp[1] - 49 > 25)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
 						distance();
 					}
 					if (temp[1] - 48 > trueSize)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 						std::cout << std::endl;
 						distance();
 					}
 					if (temp[2] - 49 < 0 || temp[2] - 49 > 25)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
 						distance();
 					}
 					if (temp[2] - 48 > trueSize)
 					{
+						std::cin.clear();
+						std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 						std::cout << std::endl;
 						distance();
