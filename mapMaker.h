@@ -165,10 +165,22 @@ void mapMaker::distance()
 								std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
 								distance();
 							}
+
 							x1 = numCoords[j];
 						}
 					}
 					//converts the characters to integers for the player map
+					if (temp[1] - 49 < 0 || temp[1] - 49 > 25)
+					{
+						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
+						distance();
+					}
+					if (temp[1] - 48 > trueSize)
+					{
+						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
+						std::cout << std::endl;
+						distance();
+					}
 					for (int j = 0; j < 26; j++)
 					{
 						if ((temp[1] - 48) == numCoords[j])
@@ -199,6 +211,28 @@ void mapMaker::distance()
 							}
 							x1 = numCoords[j];
 						}
+					}
+					if (temp[1] - 49 < 0 || temp[1] - 49 > 25)
+					{
+						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
+						distance();
+					}
+					if (temp[1] - 48 > trueSize)
+					{
+						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
+						std::cout << std::endl;
+						distance();
+					}
+					if (temp[2] - 49 < 0 || temp[2] - 49 > 25)
+					{
+						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
+						distance();
+					}
+					if (temp[2] - 48 > trueSize)
+					{
+						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
+						std::cout << std::endl;
+						distance();
 					}
 					int twoDigit = ((temp[1] - 48) * 10) + temp[2] - 48;
 					//converts the characters to integers for the player map
@@ -256,6 +290,17 @@ void mapMaker::distance()
 							x2 = numCoords[j];
 						}
 					}
+					if (temp[1] - 49 < 0 || temp[1] - 49 > 25)
+					{
+						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
+						distance();
+					}
+					if (temp[1] - 48 > trueSize)
+					{
+						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
+						std::cout << std::endl;
+						distance();
+					}
 					for (int j = 0; j < 26; j++)
 					{
 						if ((temp[1] - 48) == numCoords[j])
@@ -285,6 +330,28 @@ void mapMaker::distance()
 							}
 							x2 = numCoords[j];
 						}
+					}
+					if (temp[1] - 49 < 0 || temp[1] - 49 > 25)
+					{
+						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
+						distance();
+					}
+					if (temp[1] - 48 > trueSize)
+					{
+						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
+						std::cout << std::endl;
+						distance();
+					}
+					if (temp[2] - 49 < 0 || temp[2] - 49 > 25)
+					{
+						std::cout << "Invalid coordinate, please enter a two-perameter coordinate (ex. 'A5' or 'H25')" << std::endl;
+						distance();
+					}
+					if (temp[2] - 48 > trueSize)
+					{
+						std::cout << "This coordinate does not exist on your map, please try again." << std::endl;
+						std::cout << std::endl;
+						distance();
 					}
 					int twoDigit = ((temp[1] - 48) * 10) + temp[2] - 48;
 					for (int j = 0; j < 26; j++)
