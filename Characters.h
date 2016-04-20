@@ -63,7 +63,7 @@ public:
 
 	int getMstr();
 	int getMdex();
-	int getMcon(); 
+	int getMcon();
 	int getMintel();
 	int getMwis();
 	int getMchar();
@@ -973,6 +973,7 @@ void Character::displayStats() {
 void Character::charInfo() {
 	cout << "Character Name: " << name << endl;
 	cout << "Level: " << lvl << endl;
+	cout << "Hit Points: " << hp << endl;
 	cout << "Proficiency Bonus: " << profBonus << endl;
 	cout << "Race: " << race << endl;
 	cout << "Gender: " << gender << endl;
@@ -1059,6 +1060,7 @@ void Character::saveCharacter() {
 	save << "Wisdom: " + to_string(bwis) << " Modifier: " + to_string(mwis) + "\n";
 	save << "Charisma: " + to_string(bchar) << " Modifier: " + to_string(mchar) + "\n";
 	save << "Armor Class: " + to_string(armorClass) + "\n";
+	save << "Hit Points: " + to_string(hp) + "\n";
 	save << "Race: " + race + "\n";
 	save << "Gender: " + gender + "\n";
 	save << "Alignment: " + morals + "\n";
@@ -1130,33 +1132,36 @@ void Character::loadCharacter(string n) {
 			armorClass = stoi(line.substr(line.find(":") + 2));
 		}
 		if (counter == 10) {
-			race = line.substr(line.find(":") + 2);
+			hp = stoi(line.substr(line.find(":") + 2));
 		}
 		if (counter == 11) {
-			gender = line.substr(line.find(":") + 2);
+			race = line.substr(line.find(":") + 2);
 		}
 		if (counter == 12) {
-			morals = line.substr(line.find(":") + 2);
+			gender = line.substr(line.find(":") + 2);
 		}
 		if (counter == 13) {
-			background = line.substr(line.find(":") + 2);
+			morals = line.substr(line.find(":") + 2);
 		}
 		if (counter == 14) {
-			toolprof = line.substr(line.find(":") + 2);
+			background = line.substr(line.find(":") + 2);
 		}
 		if (counter == 15) {
-			armorprof = line.substr(line.find(":") + 2);
+			toolprof = line.substr(line.find(":") + 2);
 		}
 		if (counter == 16) {
-			weaponprof = line.substr(line.find(":") + 2);
+			armorprof = line.substr(line.find(":") + 2);
 		}
 		if (counter == 17) {
-			classType = line.substr(line.find(":") + 2);
+			weaponprof = line.substr(line.find(":") + 2);
 		}
 		if (counter == 18) {
-			languages = stoi(line.substr(line.find(":") + 2));
+			classType = line.substr(line.find(":") + 2);
 		}
 		if (counter == 19) {
+			languages = stoi(line.substr(line.find(":") + 2));
+		}
+		if (counter == 20) {
 			skillList = line.substr(line.find(":") + 2);
 		}
 		counter++;
@@ -1206,5 +1211,3 @@ int Character::getMwis() {
 int Character::getMchar() {
 	return mchar;
 }
-
-
