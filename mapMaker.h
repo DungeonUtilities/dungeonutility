@@ -35,13 +35,13 @@ public:
 	const int feetPerUnit = 5;
 
 	//corresponding arrays for movement coordinates
-	char alphaCoords[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+	char alphaCoords[26] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 	int numCoords[26] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 };
 	//char strCoords[26] = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26' };
 	char strCoords[26] = { 'a', 'b', 'c', 'd', 'e' };
 
 	//corresponding arrays for terrains and their movement effects
-	std::string terrain[11] = {"C", "F", "D", "M", "R", "S", "FD", "CB", "B", "FS", "T" };
+	std::string terrain[11] = { "C", "F", "D", "M", "R", "S", "FD", "CB", "B", "FS", "T" };
 	int movValue[11] = { 1, 2, 2, 3, 3, 4, 1, -1, -1, -1, 1 };
 };
 
@@ -123,16 +123,57 @@ void mapMaker::distance()
 	//sends user back to main menu if a map is not created
 	if (mapMaker::hasMap == false)
 	{
-		std::cout << "You don't have a map! Pleas make a new map!" << std::endl;
+		std::cout << "You don't have a map! Please make a new map!" << std::endl;
 		mapMaker::mainMenu();
 	}
-	std::cout << "Enter coordinates of two tiles separated by enter (ex. A5 or H26)" << std::endl;
-	int coordCount = 1;
+	
 	int x1 = 0;
 	int y1 = 0;
 	int x2 = 0;
 	int y2 = 0;
-	while (coordCount < 3)
+	string temp;
+	string checkBase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	
+	std::cout << "Enter first coordinate (ex. A5 or H26): " << std::endl;
+	cin >> temp;
+	while (!cin || cin.fail() || (temp.substr(1)).find_first_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") != -1) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Invalid Input!" << endl;
+		std::cout << "Enter first coordinate (ex. A5 or H26): " << std::endl;
+		cin >> temp;
+	}
+	while (!cin || temp.find_first_of(checkBase.substr(0,trueSize)) != 0 || stoi(temp.substr(1))>trueSize || stoi(temp.substr(1))<1 ||cin.fail()) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Invalid Input!" << endl;
+		std::cout << "Enter first coordinate (ex. A5 or H26): " << std::endl;
+		cin >> temp;
+	}
+	x1 = temp.at(0) - 64;
+	//cout << x1 <<" equal to: "<<temp.at(0) << endl;
+	//cout << "Substring after " << temp.at(0) << " is: " << temp.substr(1) << endl;
+	y1 = stoi(temp.substr(1));
+
+	std::cout << "Enter second coordinate (ex. A5 or H26): " << std::endl;
+	cin >> temp;
+	while (!cin || cin.fail() || (temp.substr(1)).find_first_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") != -1) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Invalid Input!" << endl;
+		std::cout << "Enter first coordinate (ex. A5 or H26): " << std::endl;
+		cin >> temp;
+	}
+	while (!cin || temp.find_first_of(checkBase.substr(0, trueSize)) != 0 || stoi(temp.substr(1))>trueSize || stoi(temp.substr(1))<1 || cin.fail()) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Invalid Input!" << endl;
+		std::cout << "Enter second coordinate (ex. A5 or H26): " << std::endl;
+		cin >> temp;
+	}
+	x2 = temp.at(0) - 64;
+	y2 = stoi(temp.substr(1));
+	/*while (coordCount < 3)
 	{
 		switch (coordCount)
 		{
@@ -409,8 +450,8 @@ void mapMaker::distance()
 			break;
 		}
 		}
-	}
-	double distance = sqrt ( (y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1) ) * 5;
+	}*/
+	double distance = sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1)) * 5;
 	if (distance < 0)
 	{
 		distance = distance * -1;
@@ -464,7 +505,7 @@ void mapMaker::newMap(int terrain)
 {
 	//struct map *userMap = new map;
 	bool goodInput = false;
-	int size; 
+	int size;
 	while (goodInput == false)
 	{
 		std::cout << "Enter a single integer value for the dimensions of your square map:" << std::endl;
@@ -486,13 +527,13 @@ void mapMaker::newMap(int terrain)
 			size = 1;
 			std::cout << "Map dimensions cannot be negative, smallest possible map of size 1 now in use." << std::endl;
 		}
-			goodInput = true;
-			trueSize = size;
+		goodInput = true;
+		trueSize = size;
 	}
 	//userMap->terrainChoice = terrain;
 	mapMaker::hasMap = true;
 	//std::cout << "Map made successfully! Returning to map menu" << std::endl;
-	
+
 	//int mapArray[26][26];
 	for (int i = 0; i < 26; i++)
 	{
@@ -537,7 +578,7 @@ void mapMaker::editMap()
 		std::cin >> temp;
 		bool noGood = false;
 		//Make sure data is valid
-		
+
 		while (!noGood)
 		{
 			charCount = 0;
@@ -798,7 +839,7 @@ void mapMaker::viewMap()
 		}
 		std::cout << std::endl;
 		int temp;
-		for (int i = 0; i < 26; i++)
+		for (int i = 0; i < trueSize; i++)//changed from 26 to trueSize
 		{
 			std::cout << alphaCoords[i];
 			for (int j = 0; j < 26; j++)
@@ -887,7 +928,7 @@ void mapMaker::viewMap()
 					default:
 						break;
 					}
-					
+
 				}
 			}
 			if (i < trueSize)
@@ -898,5 +939,5 @@ void mapMaker::viewMap()
 		mainMenu();
 	}
 	//std::cout << "This works" << std::endl;
-	int temp=0;
+	int temp = 0;
 }
